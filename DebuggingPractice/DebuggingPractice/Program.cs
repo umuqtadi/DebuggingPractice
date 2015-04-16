@@ -10,6 +10,7 @@ namespace DebuggingPractice
     {
         static void Main(string[] args)
         {
+            CountTs("The wall street journal has many t's");
         }
         /// <summary>
         /// Check for the number of t's in a string
