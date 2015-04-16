@@ -10,7 +10,6 @@ namespace DebuggingPractice
     {
         static void Main(string[] args)
         {
-            CountTs("The wall street journal has many t's");
         }
         /// <summary>
         /// Check for the number of t's in a string
@@ -21,8 +20,9 @@ namespace DebuggingPractice
         {
             int counter = 0;
             // loop through each character
-            for (int i = 1; i < input.Length; i++)
+            for (int i = 0; i < input.Length; i++)
             {
+                input = input.ToLower();
                 // check if it's a t
                 if (input[i] == 't')
                 {
@@ -47,7 +47,7 @@ namespace DebuggingPractice
             {
                 // check the character with it's partner
                 // on the other end of the string
-                if (input[i] == input[2])
+                if (input[i] != input[input.Length - 1 - i])
                 {
                     // if there ever isn't a match then the string
                     // is not a palindrome
@@ -69,14 +69,14 @@ namespace DebuggingPractice
             // int used for holding the sum
             int resultNum = 0;
             // loop through each number
-            for (int i = 0; i < number.Length; i+=2)
+            for (int i = 0; i < number.Length; i++)
             {
                 // do the calculation for ISBN by multiplying each number
                 // by it's order in the string and summing the results up
-                resultNum = number[i] * (number.Length - i);
+                resultNum += int.Parse(number[i].ToString()) * (number.Length - i);
             }
             // true if the sum is divisible by 11
-            return resultNum * 11 == 0;
+            return resultNum % 11 == 0;
         }
         /// <summary>
         /// A panagram is a string that contains each letter of the alphabet at least once.
@@ -88,21 +88,21 @@ namespace DebuggingPractice
         {
             List<string> alphabet = new List<string>();
             // loop through each letter in the input string
-            for (int i = 1; i < input.Length-1; i++)
+            for (int i = 0; i < input.Length; i++)
             {
                 // letter validation
                 if (char.IsLetter(input[i]))
                 {
                     // only add the letter if it doesn't exist in the list
-                    if (alphabet.Contains(input[i].ToString()))
+                    if (!alphabet.Contains(input[i].ToString().ToLower()))
                     {
                         // add the letter to the list
-                        alphabet.Add(input[i].ToString());
+                        alphabet.Add(input[i].ToString().ToLower());
                     }
                 }
             }
             // return true if all letters in the alphabet are contained
-            return alphabet.Count == 36;
+            return alphabet.Count == 26;
         }
     }
 }
